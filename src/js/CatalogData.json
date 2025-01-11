@@ -1,0 +1,34 @@
+[ 
+    { 
+      "id": 1, 
+      "FirstName": "Maria", 
+      "LastName": "Popescu", 
+      "alg": 10, 
+      "asc": 10, 
+      "bir": 9 
+    }, 
+    { 
+      "id": 2, 
+      "FirstName": "George", 
+      "LastName": "Vasilescu", 
+      "alg": 9, 
+      "asc": 10, 
+      "bir": 9 
+    }, 
+    { 
+      "id": 3, 
+      "FirstName": "Claudia", 
+      "LastName": "Dumitru", 
+      "alg": 10, 
+      "asc": 9, 
+      "bir": 9 
+    }, 
+    { 
+      "id": 4, 
+      "FirstName": "Andrei", 
+      "LastName": "Marin", 
+      "alg": 8, 
+      "asc": 10, 
+      "bir": 10 
+    }    
+  ]
