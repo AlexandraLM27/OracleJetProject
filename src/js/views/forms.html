@@ -4,9 +4,171 @@
  as shown at https://oss.oracle.com/licenses/upl/
  -->
  <div class="oj-hybrid-padding">
-    <h1>Forms Content Area</h1>
-    <div>
-        To change the content of this section, you will make edits to the forms.html file located in the /js/views folder.
-    </div>
+    <div class="oj-flex oj-panel  demo-flex-display" style="width: 100%; height: auto;"> 
+    <div class="oj-flex-item oj-panel oj-bg-info-30" style="min-height: 150px;"> 
+      Parinte 1 
+      <div class="oj-flex oj-panel oj-sm-flex-direction-column"> 
+        <div class="oj-flex-item oj-panel oj-bg-warning-10"> 
+          <oj-button id="enabled" on-oj-action="[[buttonAction]]"> 
+            <span>    
+            <oj-bind-text value="Enabled"></oj-bind-text> 
+            </span> 
+          </oj-button> 
+          <oj-button id="disabled" on-oj-action="[[buttonAction]]"> 
+            <span>    
+            <oj-bind-text value="Disabled"></oj-bind-text> 
+            </span> 
+          </oj-button> 
+          <oj-button id="readonly" on-oj-action="[[buttonAction]]"> 
+            <span>    
+            <oj-bind-text value="ReadOnly"></oj-bind-text> 
+            </span> 
+          </oj-button> 
+          <p></p>
+          <p id="last" class="oj-typography-bold">
+            S-a apasat butonul
+            <span id="results">
+              <oj-bind-text value="[[activatedButton]]"></oj-bind-text>
+            </span>
+          </p>
+        </div>
+        <div class="oj-flex-item oj-panel oj-bg-warning-10">
+          <oj-form-layout>
+            <oj-input-text id="text-input-nume" style="width: 300px;" value="{{nume}}" label-hint="Nume" label-edge="inside" readonly="{{value_readonly}}" disabled="{{value_disabled}}"></oj-input-text>
+            <oj-input-text id="text-input-nume" style="width: 300px;" value="{{prenume}}" label-hint="Prenume" label-edge="inside" readonly="{{value_readonly}}" disabled="{{value_disabled}}"></oj-input-text>
+          </oj-form-layout>
+          <span id="NumePrenume"> Numele complet este: 
+            <oj-bind-text value="[[nume_prenume]]"></oj-bind-text> 
+          </span>
+        </div> 
+        <div class="oj-flex-item oj-panel oj-bg-warning-10">
+          <oj-input-number
+            id="varsta"
+            value="{{varsta}}"
+            label-hint="Varsta"
+            min="18"
+            max="90"
+            step="1"
+            style="width: 300px;">
+          </oj-input-number>
+          <div class="oj-sm-margin-4x-vertical">
+            <span>Varsta lui: </span>
+            <span>
+              <oj-bind-text value="[[nume_prenume]]"></oj-bind-text>
+            </span>
+            <span>este</span>
+            <span>
+              <oj-bind-text value="[[varsta]]"></oj-bind-text>
+            </span>
+          </div>
+        </div> 
+      </div> 
+    </div> 
+    <div class="oj-flex-item oj-panel oj-bg-info-30">Parinte 2 
+      <div class="oj-flex oj-panel oj-sm-flex-direction-column"> 
+        <div class="oj-flex-item oj-panel oj-bg-warning-10"> 
+          <oj-radioset id="radiosetBasicDemoId" label-hint="Selectati un grafic" label-edge="inside"  value="{{currentChart}}"> 
+            <oj-bind-for-each data="[[chartOptions]]"> 
+              <template> 
+                <oj-option value="[[$current.data.id]]"> 
+                  <oj-bind-text value="[[$current.data.value]]"></oj-bind-text> 
+                </oj-option> 
+              </template> 
+            </oj-bind-for-each> 
+          </oj-radioset>     
+          <div class="oj-sm-margin-3x-vertical"> 
+            <oj-label-value> 
+              <oj-label slot="label">Graficul selectat este: </oj-label> 
+              <span slot="value"> 
+                <oj-bind-text value="[[currentChart]]"></oj-bind-text> 
+              </span> 
+            </oj-label-value> 
+          </div> 
+          <div class="oj-sm-margin-2x-vertical"> 
+            <oj-button id="inputButton" on-oj-action="[[setModelCurrentChartToInit]]"> 
+              Resetează graficul la Bar 
+            </oj-button> 
+          </div> 
+        </div> 
+        <div class="oj-flex-item oj-panel oj-bg-warning-10">
+          <oj-radioset label-hint="Selectați direcția diagramei: " label-edge="inside" value="{{orientationValue}}"> 
+            <oj-bind-for-each data="[[directionOptions]]"> 
+              <template> 
+                <oj-option value="[[$current.data.id]]"> 
+                  <oj-bind-text value="[[$current.data.value]]"></oj-bind-text> 
+                </oj-option> 
+              </template> 
+            </oj-bind-for-each> 
+        </oj-radioset> 
+        </div> 
+      </div> 
+    </div> 
+    <div class="oj-flex-item oj-panel oj-bg-info-30">Parinte 3 
+      <div class="oj-flex-item oj-panel oj-bg-warning-10">
+        <div id="chart-container">
+          <oj-chart
+            id="barChart"
+            type="[[currentChart]]"
+            orientation="[[orientationValue]]"
+            stack="[[stackValue]]"
+            data="[[dataProvider]]"
+            animation-on-display="auto"
+            animation-on-data-change="auto"
+            hover-behavior="dim">
+            <template slot="itemTemplate" data-oj-as="item">
+              <oj-chart-item
+                value="[[item.data.value]]"
+                group-id="[[ [item.data.group] ]]"
+                series-id="[[item.data.series]]"></oj-chart-item>
+            </template>
+          </oj-chart>
+        </div>
+      </div> 
+    </div> 
+    <div class="oj-flex-item oj-panel oj-bg-info-30">Parinte 4
+      <div class="oj-flex-item oj-panel oj-bg-warning-10"> 
+        <oj-checkboxset
+              id="checkboxSetId"
+              label-hint="Selectati judete"
+              label-edge="inside"
+              value="{{currentJudet}}"
+              style="width: 300px;">
+              <oj-bind-for-each data="[[judetOptions]]">
+                <template>
+                  <oj-option value="[[$current.data.value]]">
+                    <oj-bind-text value="[[$current.data.judet]]"></oj-bind-text>
+                  </oj-option>
+                </template>
+              </oj-bind-for-each>
+          </oj-checkboxset>
+          <div class="oj-sm-margin-3x-vertical"> 
+            <oj-label-value> 
+              <oj-label slot="label">Judetele selectate sunt: </oj-label> 
+              <span slot="value"> 
+                <oj-bind-text value="[[currentJudet]]"></oj-bind-text> 
+              </span> 
+            </oj-label-value> 
+          </div> 
+          <div class="oj-sm-margin-2x-vertical"> 
+            <oj-button id="inputButton" on-oj-action="[[setJudeteSibiuValcea]]"> 
+              Selecteaza judetele Sibiu si Valcea
+            </oj-button> 
+          </div> 
+          <div class="oj-sm-margin-2x-vertical"> 
+            <oj-button id="inputButton" on-oj-action="[[setJudetToSibiu]]"> 
+              Revino la selectarea judetului Sibiu
+            </oj-button> 
+          </div> 
+      </div> 
+    </div> 
+    </div> 
+<span class="oj-sm-margin-4x-top">
+  <oj-checkboxset id="“dir”" value="{{checkValue}}">
+    <oj-option id="“dirColumn”" value="dirColumn">
+      add class 'oj-sm-flex-direction-column'
+    </oj-option>
+  </oj-checkboxset>
+</span>
   </div>
+
   
