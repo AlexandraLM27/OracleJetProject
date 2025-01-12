@@ -1,0 +1,18 @@
+
+<div class="oj-hybrid-padding">
+      <oj-form-layout readonly="true">
+        <oj-input-text label-hint="Label" value="[[record().label]]"></oj-input-text>
+        <oj-text-area label-hint="Description" value="[[record().value]]"></oj-text-area>
+      </oj-form-layout>
+    </oj-bind-if>
+    <div class="oj-toolbar-bottom-border">
+      <oj-toolbar>
+        <oj-button chroming="outlined" on-oj-action="[[onPrevious]]">
+          Previous
+        </oj-button>
+        <oj-button chroming="outlined" on-oj-action="[[onNext]]">
+          Next
+        </oj-button>
+      </oj-toolbar>
+    </div>
+</div>

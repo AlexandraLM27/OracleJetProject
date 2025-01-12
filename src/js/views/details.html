@@ -1,0 +1,12 @@
+ <div class="oj-hybrid-padding">
+    <h1>Details Content Area</h1>
+      <oj-bind-if test="[[record]]">
+        <oj-form-layout readonly="true">
+          <oj-input-text readonly="true" label-hint="Id" value="[[record().id]]"></oj-input-text>
+          <oj-input-text readonly="true" label-hint="Reported By" value="[[record().name]]"></oj-input-text>
+          <oj-input-text readonly="true" label-hint="Summary" value="[[record().summary]]"></oj-input-text>
+          <oj-text-area readonly="true" label-hint="Description" value="[[record().description]]"></oj-text-area>
+        </oj-form-layout>
+      </oj-bind-if>
+  </div>
+  

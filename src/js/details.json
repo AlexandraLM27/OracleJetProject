@@ -1,0 +1,53 @@
+{
+    "customers": [
+      {
+        "id": 100,
+        "customerId": 1000,
+        "name": "Joe King",
+        "summary": "Pipe burst",
+        "description": "Hot water pipe burst"
+      },
+      {
+        "id": 101,
+        "customerId": 1000,
+        "name": "Larry Wright",
+        "summary": "Valve leaking",
+        "description": "The shutoff valve is leaking"
+      },
+      {
+        "id": 102,
+        "customerId": 1001,
+        "name": "Wilbur Small",
+        "summary": "Switch broken",
+        "description": "The light switch in the lunch room isn't working"
+      },
+      {
+        "id": 103,
+        "customerId": 1001,
+        "name": "Grant Wall",
+        "summary": "Door won't shut",
+        "description": "The door to the control room won't fully shut"
+      },
+      {
+        "id": 104,
+        "customerId": 1001,
+        "name": "Charles Paige",
+        "summary": "Exit blocked",
+        "description": "The emergency exit is blocked with boxes, causing a safety hazard"
+      },
+      {
+        "id": 105,
+        "customerId": 1002,
+        "name": "Chris Fields",
+        "summary": "Stairway unsafe",
+        "description": "The stairway to the north entrance is in disrepair"
+      },
+      {
+        "id": 106,
+        "customerId": 1002,
+        "name": "Sally Struthers",
+        "summary": "Camera broken",
+        "description": "The security camera in the main lobby isn't working"
+      }
+    ]
+  }
