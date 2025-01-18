@@ -1,0 +1,145 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div id="tableDemo"> 
+    <div class="oj-flex oj-panel oj-bg-info-30"> 
+    <h4> Situația școlară a studenților din anul I </h4>  
+    </div> 
+    <oj-messages messages="[[messageArray]]"></oj-messages> 
+    <div class="oj-flex oj-panel oj-bg-info-30"> 
+            <div class="oj-flex-item oj-panel oj-bg-info-30 oj-md-3">
+              <oj-validation-group valid="{{groupValid}}">
+                <oj-form-layout> 
+                    <oj-input-number id="MatricolInput" max="2000" min="0"  
+                            label-hint="Nr. matr." value="{{inputMatricol}}"></oj-input-number> 
+                    <oj-input-text id="NumeInput" label-hint="Nume" value="{{inputNume}}"> 
+                    </oj-input-text> 
+                    <oj-input-text id="PrenumeInput" label-hint="Prenume"  
+                         value="{{inputPrenume}}"> </oj-input-text> 
+                    <oj-input-number id="AlgInput" label-hint="Algoritmi" max="10" min="0" 
+                         step="1" value="{{inputAlg}}" converter='[[converter]]'> 
+                         </oj-input-number> 
+                    <oj-input-number id="AscIdInput" label-hint="ASC" max="10" min="0"  
+                         step="1" value="{{inputAsc}}" converter='[[converter]]'> 
+                    </oj-input-number> 
+                    <oj-input-number id="GeomIdInput" label-hint="Geometrie" max="10" min="0" 
+                         step="1" value="{{inputGeom}}" converter='[[converter]]'> 
+                    </oj-input-number> 
+               </oj-form-layout>
+                <oj-toolbar chroming="outlined">
+                  <oj-button id="addbutton" on-oj-action="[[addRow]]" disabled="[[disableCreate]]">
+                    Create
+                  </oj-button>
+                  <oj-button
+                    id="updateButton"
+                    on-oj-action="[[updateRow]]"
+                    disabled="[[disableRemoveUpdate]]">
+                    Update
+                  </oj-button>
+                  <oj-button
+                    id="removeButton"
+                    on-oj-action="[[removeRow]]"
+                    disabled="[[disableRemoveUpdate]]">
+                    Remove
+                  </oj-button>
+                  <oj-button
+                    id="removeAllButton"
+                    on-oj-action="[[removeAllRow]]"
+                    disabled="[[isEmptyTable]]">
+                    Remove All
+                  </oj-button>
+                </oj-toolbar>
+              </oj-validation-group>
+            </div>
+            <div id="tableContainer" class="oj-flex-item oj-sm-padding-2x-horizontal oj-md-6">
+                <oj-table id="table" aria-label="Students Table" class="demo-table-container oj-bg-body" 
+                data='[[dataprovider]]'  
+                columns='[{"headerText": "Nr. matr.", "field": "NumarMatricol"}, 
+                {"headerText": "Nume", "field": "Nume"}, 
+                {"headerText": "Prenume", "field": "Prenume"}, 
+                {"headerText": "Algoritmi", "field": "Algoritmi"}, 
+                {"headerText": "ASC", "field": "ASC"}, 
+                {"headerText": "Geometrie", "field": "Geometrie"}]'  
+                first-selected-row='{{firstSelected}}'  
+                selection-mode.row='{{currentSelection}}'   
+                dnd.drag.rows.data-types='["application/ojtablerows+json"]'
+                on-first-selected-row-changed="[[firstSelectedRowChangedListener]]"> 
+                </oj-table> 
+              <div
+                id="noDataDiv"
+                class="oj-flex demo-table-container oj-helper-text-align-center oj-sm-hide">
+                <div class="oj-flex-item oj-sm-align-self-center">
+                  <span>No data available. Please use the form controls to create a new row.</span>
+                </div>
+              </div>
+              <oj-toolbar chroming="outlined">
+                <oj-button id="resetButton" on-oj-action="[[resetRows]]" disabled="[[disableSubmit]]">
+                  Reset Changes
+                </oj-button>
+                <oj-button id="submitButton" on-oj-action="[[submitRows]]" disabled="[[disableSubmit]]">
+                  Submit Changes
+                </oj-button>
+              </oj-toolbar>
+            </div>
+            <div class="oj-flex-item oj-border oj-panel oj-bg-info-30 oj-md-3">
+                <div id="chart-container">
+                    <oj-chart id="barChart" 
+                    on-keydown="[[handleKey]]" 
+                    type="bar" 
+                    series="[[barSeriesValue]]"
+                    groups="[[barGroupsValue]]" 
+                    animation-on-display="auto" 
+                    animation-on-data-change="auto"
+                    dnd.drop.plot-area.data-types='["application/ojtablerows+json"]'
+                    dnd.drop.plot-area.drop="[[handleDrop]]"></oj-chart>
+                </div>
+            </div>
+      </div>
+      <div class="oj-flex oj-border oj-panel oj-bg-info-30">
+        <div class="oj-flex-item oj-border oj-panel oj-bg-info-30 oj-md-4">
+            <oj-form-layout>
+                <oj-input-text id="NrInput" label-hint="Nr. Matricol" value="{{inputMatricol}}" readonly="true"></oj-input-text>
+                <oj-input-text id="NumePrenumeInput" label-hint="Nume Prenume" value="{{inputNumePrenume}}" readonly="true"></oj-input-text>
+                <oj-input-text id="MediaInput" label-hint="Media" value="{{inputMedia}}" readonly="true"></oj-input-text>
+            </oj-form-layout>
+        </div>
+        <div class="oj-flex-item oj-border oj-panel oj-bg-info-30 oj-md-8">
+            <oj-radioset
+                id="radiosetBasicDemoId"
+                label-hint="Selection Mode"
+                label-edge="inside"
+                value="{{currentSelection}}">
+                <oj-bind-for-each data="[[selOptions]]">
+                    <template>
+                        <oj-option value="[[$current.data.value]]">
+                        <oj-bind-text value="[[$current.data.label]]"></oj-bind-text>
+                        </oj-option>
+                    </template>
+                </oj-bind-for-each>
+            </oj-radioset>
+        </div>
+    </div>
+    <div class="oj-fex oj-panel oj-bg-info-30 oj-md-12">
+        <h2>Tema</h2>
+        <oj-table id="table" 
+            aria-label="Student Table"  
+            data="[[dataProvider]]" 
+            accessibility.row-header="id"  
+            class="demo-table-container oj-flex-item oj-sm-padding-2x-horizontal oj-md-6" 
+            layout="fixed"  
+            columns='[{"headerText": "Nr. Matr", "sortProperty": "attr.numarmatricol", "weight": 2, "id": "numarmatricol","maxWidth": "10rem"}, 
+                    {"headerText": "Nume", "sortProperty": "attr.nume", "id": "nume"}, 
+                    {"headerText": "Prenume", "sortProperty": "attr.prenume", "id": "prenume"}]'> 
+        <template slot="rowTemplate" data-oj-as="row"> 
+                <oj-bind-dom config="[[getRowConfig()]]"></oj-bind-dom> 
+        </template> 
+        </oj-table> 
+    </div>
+    <div>
+        <oj-label for="bufferContent">Buffered Changes:</oj-label>
+        <oj-text-area id="bufferContent" rows="10" class="demo-table-textarea"></oj-text-area>
+      </div>
+  </div>
+  

@@ -1,0 +1,29 @@
+<tr>
+    <oj-bind-if test="[[row.item.metadata.treeDepth === 0]]">
+      <td>
+        <oj-row-expander context="[[row]]" data-oj-clickthrough="disabled"></oj-row-expander>
+        <span><oj-bind-text value="[[row.item.data.attr.numarmatricol]]"></oj-bind-text></span>
+      </td>
+      <td>
+        <span><oj-bind-text value="[[row.item.data.attr.nume]]"></oj-bind-text></span>
+      </td>
+      <td>
+        <span><oj-bind-text value="[[row.item.data.attr.prenume]]"></oj-bind-text></span>
+      </td>
+    </oj-bind-if>
+    <oj-bind-if test="[[row.item.metadata.treeDepth === 1]]">
+      <td colspan="1">
+        <span><oj-bind-text value="[[row.item.data.attr.detail]]"></oj-bind-text></span>
+      </td>
+      <td colspan="3">
+        <oj-chart 
+          type="bar" 
+          series="[[[{'name': 'Algoritmi', items: [row.item.data.attr.algoritmi]}, 
+           {'name': 'ASC', items: [row.item.data.attr.asc]}, 
+           {'name': 'Geometrie', items: [row.item.data.attr.geometrie]}]]]" 
+          style-defaults='{"dataLabelPosition": "center"}' 
+          legend='{"position": "bottom"}' 
+          class="demo-table-chart"></oj-chart> 
+      </td>
+    </oj-bind-if>
+  </tr>

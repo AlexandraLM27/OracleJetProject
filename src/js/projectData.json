@@ -1,0 +1,59 @@
+[ 
+    { 
+        "attr": { 
+            "id": "t1", 
+            "numarmatricol": 10, 
+            "nume": "Ionescu", 
+            "prenume": "Maria" 
+        }, 
+        "children": [ 
+            { 
+                "attr": { 
+                    "id": "t1:1", 
+                    "detail": "Note obținute:", 
+                    "algoritmi": 10, 
+                    "asc": 9, 
+                    "geometrie": 10 
+                } 
+            } 
+        ] 
+    }, 
+    { 
+        "attr": { 
+            "id": "t2", 
+            "numarmatricol": 20, 
+            "nume": "Popescu", 
+            "prenume": "Ioana" 
+        }, 
+        "children": [ 
+            { 
+                "attr": { 
+                    "id": "t2:1", 
+                    "detail": "Note obținute:", 
+                    "algoritmi": 9, 
+                    "asc": 9, 
+                    "geometrie": 7 
+                } 
+            } 
+        ] 
+    }, 
+    { 
+        "attr": { 
+            "id": "t3", 
+            "numarmatricol": 30, 
+            "nume": "Dumitru", 
+            "prenume": "Camila" 
+        }, 
+        "children": [ 
+            { 
+                "attr": { 
+                    "id": "t3:1", 
+                    "detail": "Note obținute:", 
+                    "algoritmi": 9, 
+                    "asc": 10, 
+                    "geometrie": 9 
+                } 
+            } 
+        ] 
+    } 
+]
